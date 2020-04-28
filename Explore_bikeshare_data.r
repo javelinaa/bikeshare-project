@@ -76,7 +76,8 @@ wash3.ranked <- wash3 %>%
 wash4 <-  wash3 %>%
    left_join(wash3.ranked, by = c('Start.Station' = 'Station')) %>%
    left_join(wash3.ranked, by = c('End.Station' = 'Station')) %>%
-   rename('rank.start' = rank.x, 'rank.end' = rank.y)
+   rename('rank.start' = rank.x, 'rank.end' = rank.y) %>%
+   mutate(ranksum = rank.x + rank.y)
 
 wash4 %>%
    group_by(Start.Station, End.Station, rank.start, rank.end) %>%
@@ -92,11 +93,11 @@ wash4 %>%
 plot.stations <- c(wash.toptrip.stations[1:3], wash.toptrip.stations[26:31])
 
 # Get hour of day from Start.Hour and End.Hour fields
-wash5 <- wash4 %>%
+wash_p3 <- wash4 %>%
   mutate(Start.Hour = substr(as.character(Start.Time), 12, 13)) %>%
   mutate(End.Hour = substr(as.character(End.Time), 12, 13))
 
-wash5 %>%
+wash_p3 %>%
    subset(Start.Station %in% plot.stations) %>%
    ggplot(aes(x = End.Hour)) + 
    geom_histogram(stat = 'count') +
