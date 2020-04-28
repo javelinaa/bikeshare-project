@@ -76,7 +76,8 @@ wash3.ranked <- wash3 %>%
 wash4 <-  wash3 %>%
    left_join(wash3.ranked, by = c('Start.Station' = 'Station')) %>%
    left_join(wash3.ranked, by = c('End.Station' = 'Station')) %>%
-   rename('rank.start' = rank.x, 'rank.end' = rank.y)
+   rename('rank.start' = rank.x, 'rank.end' = rank.y) %>%
+   mutate(ranksum = rank.x + rank.y)
 
 wash4 %>%
    group_by(Start.Station, End.Station, rank.start, rank.end) %>%
