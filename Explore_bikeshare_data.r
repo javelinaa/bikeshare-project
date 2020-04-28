@@ -93,11 +93,11 @@ wash4 %>%
 plot.stations <- c(wash.toptrip.stations[1:3], wash.toptrip.stations[26:31])
 
 
-wash5 <- wash4 %>%
+wash_p3 <- wash4 %>%
   mutate(Start.Hour = substr(as.character(Start.Time), 12, 13)) %>%
   mutate(End.Hour = substr(as.character(End.Time), 12, 13))
 
-wash5 %>%
+wash_p3 %>%
    subset(Start.Station %in% plot.stations) %>%
    ggplot(aes(x = End.Hour)) + 
    geom_histogram(stat = 'count') +
