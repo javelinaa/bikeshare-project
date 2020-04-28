@@ -1,2 +1,3 @@
 # bikeshare-project
-Bikeshare project for Udacity course
+This is the bikeshare analysis project done for the Udacity data analysis with R course.
+The analysis has been copied from the Jupyter notebook to a local script.
